@@ -1,0 +1,9 @@
+name: UnioStats
+main: me.UnioDex.uniostats.UnioStats
+author: 'UnioDex'
+version: 1.0
+
+commands:
+  uniostats:
+    description: UnioStats
+    aliases: [stats, istatistikler]
