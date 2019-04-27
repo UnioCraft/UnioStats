@@ -1,0 +1,8 @@
+database:
+  ip: mysql.uniocraft.com
+  port: 3306
+  dbname: factions
+  user: factions
+  pass: pass
+  table: unio_stats
+prefix: '&6&lFACTIONS &b-> &2'
