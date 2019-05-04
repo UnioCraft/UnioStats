@@ -41,7 +41,6 @@ public class MainCommand implements CommandExecutor {
                     return true;
                 }
             }
-            return true;
         }
 
         String playerName = sender.getName();
