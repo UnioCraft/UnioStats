@@ -64,7 +64,7 @@ public class SQLManager {
     }
 
     private boolean playerExists(String player) {
-        String QUERY = "SELECT * FROM `" + database + "`.`" + table + "` WHERE `" + "player" + "` = '" + player + "';";
+        String QUERY = "SELECT * FROM `" + database + "`.`" + table + "` WHERE `player` = '" + player + "';";
         try (Connection connection = pool.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(QUERY);
             ResultSet res = statement.executeQuery();
@@ -77,17 +77,16 @@ public class SQLManager {
         return false;
     }
 
-    private void createPlayer(String player) {
+    private boolean createPlayer(String player) {
         if (!playerExists(player)) {
-            updateSQL("INSERT INTO `" + database + "`.`" + table + "` (`player`) VALUES ('" + player + "');");
+            return updateSQL("INSERT INTO `" + database + "`.`" + table + "` (`player`) VALUES ('" + player + "');");
         }
+        return true;
     }
 
     public Map<String, Integer> getPlayerStats(String player, boolean createPlayer) {
-        if (!playerExists(player)) {
-            if (createPlayer) {
-                createPlayer(player);
-            }else {
+        if (createPlayer) {
+            if (!createPlayer(player)) {
                 return null;
             }
         }

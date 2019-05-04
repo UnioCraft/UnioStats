@@ -59,8 +59,9 @@ public class StatPlayer {
                 if (stats == null) {
                     Player p = Bukkit.getPlayer(playerName);
                     if (p != null) {
-                        Utils.kickSync(plugin, playerName, "İstatistikleriniz yüklenirken bir sorun oluştuğu için atıldınız. Lütfen tekrar giriş yapınız.");
+                        Utils.kickSync(plugin, playerName, "İstatistikleriniz yüklenirken bir sorun oluştuğu için atıldınız. Lütfen tekrar giriş yapınız. (Sorun ID: 1)");
                     }
+                    plugin.getStatManager().getDataLoadingPlayers().remove(playerName);
                     return;
                 }
                 kills = stats.get("kills");
@@ -76,7 +77,7 @@ public class StatPlayer {
         } else {
             Player p = Bukkit.getPlayer(playerName);
             if (p != null) {
-                Utils.kickSync(plugin, playerName, "İstatistikleriniz yüklenirken bir sorun oluştuğu için atıldınız. Lütfen tekrar giriş yapınız.");
+                Utils.kickSync(plugin, playerName, "İstatistikleriniz yüklenirken bir sorun oluştuğu için atıldınız. Lütfen tekrar giriş yapınız. (Sorun ID: 2)");
             }
         }
     }
