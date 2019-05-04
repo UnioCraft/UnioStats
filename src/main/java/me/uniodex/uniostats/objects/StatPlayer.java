@@ -77,7 +77,7 @@ public class StatPlayer {
         } else {
             Player p = Bukkit.getPlayer(playerName);
             if (p != null) {
-                Utils.kickSync(plugin, playerName, "İstatistikleriniz yüklenirken bir sorun oluştuğu için atıldınız. Lütfen tekrar giriş yapınız. (Sorun ID: 2)");
+                Utils.kickSync(plugin, playerName, "İstatistikleriniz yüklenirken bir sorun oluştuğu için atıldınız. Lütfen tekrar giriş yapınız. (Sorun ID: 2,"+plugin.getStatManager().getDataLoadingPlayers().contains(playerName)+","+plugin.getStatManager().getDataSavingPlayers().contains(playerName)+")");
             }
         }
     }
