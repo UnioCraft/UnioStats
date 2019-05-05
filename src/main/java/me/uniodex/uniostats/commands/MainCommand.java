@@ -53,8 +53,10 @@ public class MainCommand implements CommandExecutor {
             displayName = playerName;
             if ((player = Bukkit.getPlayer(playerName)) != null) {
                 displayName = player.getDisplayName();
-                statPlayer = plugin.getStatManager().getPlayers().get(String.valueOf(args[0]));
-                statPlayer.updatePlayTime();
+                statPlayer = plugin.getStatManager().getPlayers().get(player.getName());
+                if (statPlayer != null) {
+                    statPlayer.updatePlayTime();
+                }
             }
         }
 
@@ -80,7 +82,7 @@ public class MainCommand implements CommandExecutor {
                 armorsBroken = stats.get("armorsBroken");
             } else {
                 sender.sendMessage(UnioStats.prefix + ChatColor.RED + "Belirttiğiniz kişiye ait istatistik bulunamadı!");
-                return false;
+                return true;
             }
         } else {
             kills = statPlayer.getKills();
