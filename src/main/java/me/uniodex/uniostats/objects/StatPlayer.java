@@ -57,7 +57,7 @@ public class StatPlayer {
             Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
                 Map<String, Integer> stats = plugin.getSqlManager().getPlayerStats(playerName, true);
                 if (stats == null) {
-                    Player p = Bukkit.getPlayer(playerName);
+                    Player p = Bukkit.getPlayerExact(playerName);
                     if (p != null) {
                         Utils.kickSync(plugin, playerName, "İstatistikleriniz yüklenirken bir sorun oluştuğu için atıldınız. Lütfen tekrar giriş yapınız. (Sorun ID: 1)");
                     }
@@ -75,7 +75,7 @@ public class StatPlayer {
                 plugin.getStatManager().getDataLoadingPlayers().remove(playerName);
             });
         } else {
-            Player p = Bukkit.getPlayer(playerName);
+            Player p = Bukkit.getPlayerExact(playerName);
             if (p != null) {
                 Utils.kickSync(plugin, playerName, "İstatistikleriniz yüklenirken bir sorun oluştuğu için atıldınız. Lütfen tekrar giriş yapınız. (Sorun ID: 2,"+plugin.getStatManager().getDataLoadingPlayers().contains(playerName)+","+plugin.getStatManager().getDataSavingPlayers().contains(playerName)+")");
             }

@@ -44,14 +44,14 @@ public class MainCommand implements CommandExecutor {
         }
 
         String playerName = sender.getName();
-        Player player = Bukkit.getPlayer(playerName);
+        Player player = Bukkit.getPlayerExact(playerName);
         String displayName = player.getDisplayName();
         StatPlayer statPlayer = plugin.getStatManager().getPlayers().get(sender.getName());
 
         if (args.length == 1) {
             playerName = String.valueOf(args[0]);
             displayName = playerName;
-            if ((player = Bukkit.getPlayer(playerName)) != null) {
+            if ((player = Bukkit.getPlayerExact(playerName)) != null) {
                 displayName = player.getDisplayName();
                 statPlayer = plugin.getStatManager().getPlayers().get(player.getName());
                 if (statPlayer != null) {
