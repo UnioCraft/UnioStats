@@ -120,9 +120,11 @@ public class SQLManager {
         } else {
             updateSQL("UPDATE `" + database + "`.`" + table + "` SET `kills` = '" + kills + "', `deaths` = '" + deaths + "', `mobKills` = '" + mobKills + "', `bossKills` = '" + bossKills + "', `playTime` = '" + playTime + "', `gapplesEaten` = '" + gapplesEaten + "', `armorsBroke` = '" + armorsBroke + "', `armorsBroken` = '" + armorsBroken + "' WHERE `" + table + "`.`player` = '" + player + "';");
         }
-        while (plugin.getStatManager().getDataSavingPlayers().contains(player)) {
-            plugin.getStatManager().getDataSavingPlayers().remove(player);
-        }
+        Bukkit.getScheduler().runTask(plugin, () -> {
+            while (plugin.getStatManager().getDataSavingPlayers().contains(player)) {
+                plugin.getStatManager().getDataSavingPlayers().remove(player);
+            }
+        });
     }
 
     public void onDisable() {

@@ -61,9 +61,11 @@ public class StatPlayer {
                     if (p != null) {
                         Utils.kickSync(plugin, playerName, "İstatistikleriniz yüklenirken bir sorun oluştuğu için atıldınız. Lütfen tekrar giriş yapınız. (Sorun ID: 1)");
                     }
-                    while (plugin.getStatManager().getDataLoadingPlayers().contains(playerName)) {
-                        plugin.getStatManager().getDataLoadingPlayers().remove(playerName);
-                    }
+                    Bukkit.getScheduler().runTask(plugin, () -> {
+                        while (plugin.getStatManager().getDataLoadingPlayers().contains(playerName)) {
+                            plugin.getStatManager().getDataLoadingPlayers().remove(playerName);
+                        }
+                    });
                     return;
                 }
                 kills = stats.get("kills");
@@ -74,14 +76,16 @@ public class StatPlayer {
                 gapplesEaten = stats.get("gapplesEaten");
                 armorsBroke = stats.get("armorsBroke");
                 armorsBroken = stats.get("armorsBroken");
-                while (plugin.getStatManager().getDataLoadingPlayers().contains(playerName)) {
-                    plugin.getStatManager().getDataLoadingPlayers().remove(playerName);
-                }
+                Bukkit.getScheduler().runTask(plugin, () -> {
+                    while (plugin.getStatManager().getDataLoadingPlayers().contains(playerName)) {
+                        plugin.getStatManager().getDataLoadingPlayers().remove(playerName);
+                    }
+                });
             });
         } else {
             Player p = Bukkit.getPlayerExact(playerName);
             if (p != null) {
-                Utils.kickSync(plugin, playerName, "İstatistikleriniz yüklenirken bir sorun oluştuğu için atıldınız. Lütfen tekrar giriş yapınız. (Sorun ID: 2,"+plugin.getStatManager().getDataLoadingPlayers().contains(playerName)+","+plugin.getStatManager().getDataSavingPlayers().contains(playerName)+")");
+                Utils.kickSync(plugin, playerName, "İstatistikleriniz yüklenirken bir sorun oluştuğu için atıldınız. Lütfen tekrar giriş yapınız. (Sorun ID: 2," + plugin.getStatManager().getDataLoadingPlayers().contains(playerName) + "," + plugin.getStatManager().getDataSavingPlayers().contains(playerName) + ")");
             }
         }
     }
