@@ -60,4 +60,8 @@ public class Utils {
         double playTimeDouble = Utils.round(actplayTime);
         return playTimeDouble + " saat";
     }
+
+    public static boolean isAltAccount(Player killer, Player victim) {
+        return killer.getAddress().getAddress().equals(victim.getAddress().getAddress());
+    }
 }

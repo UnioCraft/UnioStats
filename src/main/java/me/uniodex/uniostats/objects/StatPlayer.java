@@ -7,6 +7,7 @@ import me.uniodex.uniostats.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class StatPlayer {
@@ -42,6 +43,10 @@ public class StatPlayer {
     @Getter
     @Setter
     private int armorsBroken; // Player's armor
+    @Getter
+    private Map<String, Integer> playerKills = new HashMap<>();
+    @Getter
+    private Map<String, Long> playersInHold = new HashMap<>();
 
     public StatPlayer(String playerName, UnioStats plugin) {
         this.playerName = playerName;

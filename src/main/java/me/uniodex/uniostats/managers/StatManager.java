@@ -51,6 +51,10 @@ public class StatManager {
         players.remove(player);
     }
 
+    public StatPlayer getPlayer(String player) {
+        return players.get(player);
+    }
+
     public void giveStat(String player, Stats stat, int amount) {
         if (players.containsKey(player)) {
             if (stat.equals(Stats.KILLS)) {
