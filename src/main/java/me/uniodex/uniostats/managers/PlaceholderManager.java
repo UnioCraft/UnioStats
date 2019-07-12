@@ -80,7 +80,7 @@ public class PlaceholderManager extends PlaceholderExpansion {
         if (statPlayer == null) return null;
 
         for (StatManager.Stats stat : StatManager.Stats.values()) {
-            if (identifier.equalsIgnoreCase(1stat.toString().toLowerCase())) {
+            if (identifier.equalsIgnoreCase(stat.toString().toLowerCase())) {
                 return UnioStats.getInstance().getStatManager().getStat(player.getName(), stat);
             }
         }
