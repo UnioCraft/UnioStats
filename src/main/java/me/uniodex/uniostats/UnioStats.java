@@ -17,7 +17,7 @@ public class UnioStats extends JavaPlugin {
     @Getter
     private boolean isStopping;
 
-    public static String prefix = ChatColor.AQUA + "" + ChatColor.BOLD + "UNIOCRAFT " + ChatColor.DARK_GREEN + "->" + ChatColor.RED + " ";
+    public static String prefix = ChatColor.AQUA + "" + ChatColor.BOLD + "UNIOCRAFT " + ChatColor.DARK_GREEN + "->" + ChatColor.RED;
 
     public void onEnable() {
         saveDefaultConfig();
@@ -32,5 +32,9 @@ public class UnioStats extends JavaPlugin {
         this.isStopping = true;
         this.statManager.onDisable();
         this.sqlManager.onDisable();
+    }
+
+    public String getMessage(String configSection) {
+        return ChatColor.translateAlternateColorCodes('&', getConfig().getString(configSection).replaceAll("%prefix%", prefix));
     }
 }

@@ -81,7 +81,7 @@ public class MainCommand implements CommandExecutor {
                 armorsBroke = stats.get("armorsBroke");
                 armorsBroken = stats.get("armorsBroken");
             } else {
-                sender.sendMessage(UnioStats.prefix + ChatColor.RED + "Belirttiğiniz kişiye ait istatistik bulunamadı!");
+                sender.sendMessage(UnioStats.prefix + ChatColor.RED + " Belirttiğiniz kişiye ait istatistik bulunamadı!");
                 return true;
             }
         } else {
@@ -97,16 +97,18 @@ public class MainCommand implements CommandExecutor {
 
         double kdr = Utils.calculateKDR(kills, deaths);
 
-        sender.sendMessage(UnioStats.prefix + displayName + ChatColor.RED + " isimli oyuncunun istatistikleri:");
-        sender.sendMessage(UnioStats.prefix + ChatColor.RED + "Öldürme: " + ChatColor.AQUA + kills);
-        sender.sendMessage(UnioStats.prefix + ChatColor.RED + "Ölme: " + ChatColor.AQUA + deaths);
-        sender.sendMessage(UnioStats.prefix + ChatColor.RED + "Öldürme/Ölme Oranı: " + ChatColor.AQUA + kdr);
-        sender.sendMessage(UnioStats.prefix + ChatColor.RED + "Öldürülen Yaratık: " + ChatColor.AQUA + mobKills);
-        sender.sendMessage(UnioStats.prefix + ChatColor.RED + "Öldürülen Boss: " + ChatColor.AQUA + bossKills);
-        sender.sendMessage(UnioStats.prefix + ChatColor.RED + "Toplam Oynama Süresi: " + ChatColor.AQUA + playTime);
-        sender.sendMessage(UnioStats.prefix + ChatColor.RED + "Yenilen Büyülü Altın Elma: " + ChatColor.AQUA + gapplesEaten);
-        sender.sendMessage(UnioStats.prefix + ChatColor.RED + "Kırdığı Zırh Sayısı: " + ChatColor.AQUA + armorsBroke);
-        sender.sendMessage(UnioStats.prefix + ChatColor.RED + "Kırılan Zırh Sayısı: " + ChatColor.AQUA + armorsBroken);
+        sender.sendMessage(plugin.getMessage("statsCommand")
+                .replaceAll("%player%", String.valueOf(displayName))
+                .replaceAll("%kills%", String.valueOf(kills))
+                .replaceAll("%deaths%", String.valueOf(deaths))
+                .replaceAll("%kdr%", String.valueOf(kdr))
+                .replaceAll("%mobKills%", String.valueOf(mobKills))
+                .replaceAll("%bossKills%", String.valueOf(bossKills))
+                .replaceAll("%playTime%", playTime)
+                .replaceAll("%gapplesEaten%", String.valueOf(gapplesEaten))
+                .replaceAll("%armorsBroke%", String.valueOf(armorsBroke))
+                .replaceAll("%armorsBroken%", String.valueOf(armorsBroken))
+        );
 
         return true;
     }

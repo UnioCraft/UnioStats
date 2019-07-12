@@ -27,7 +27,7 @@ public class StatListeners implements Listener {
     public StatListeners(UnioStats plugin) {
         this.plugin = plugin;
         Bukkit.getPluginManager().registerEvents(this, plugin);
-        if (Bukkit.getPluginManager().isPluginEnabled("MythicMobs")) {
+        if (Bukkit.getPluginManager().isPluginEnabled("MythicMobs") && plugin.getConfig().getBoolean("stats.bossKills")) {
             Bukkit.getPluginManager().registerEvents(new MythicMobListener(), plugin);
         }
     }
@@ -44,6 +44,8 @@ public class StatListeners implements Listener {
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
+        if (!plugin.getConfig().getBoolean("stats.killsAndDeaths")) return;
+
         Player victim = event.getEntity();
         Player killer = event.getEntity().getKiller();
 
@@ -55,6 +57,8 @@ public class StatListeners implements Listener {
 
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
+        if (!plugin.getConfig().getBoolean("stats.mobKills")) return;
+
         Player killer = event.getEntity().getKiller();
         if (event.getEntity() instanceof Player) {
             return;
@@ -67,6 +71,8 @@ public class StatListeners implements Listener {
 
     @EventHandler
     public void onConsume(PlayerItemConsumeEvent event) {
+        if (!plugin.getConfig().getBoolean("stats.gapplesEaten")) return;
+
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
 
@@ -79,13 +85,15 @@ public class StatListeners implements Listener {
     public void onItemBreak(PlayerItemBreakEvent event) {
         Player player = event.getPlayer();
 
-        if (Utils.isArmor(event.getBrokenItem())) {
+        if (Utils.isArmor(event.getBrokenItem()) && plugin.getConfig().getBoolean("stats.armorsBroken")) {
             plugin.getStatManager().giveStat(player.getName(), StatManager.Stats.ARMORS_BROKEN, 1);
         }
 
         if (!(player.getLastDamageCause() instanceof EntityDamageByEntityEvent)) {
             return;
         }
+
+        if (!plugin.getConfig().getBoolean("stats.armorsBroke")) return;
 
         EntityDamageByEntityEvent e = (EntityDamageByEntityEvent) player.getLastDamageCause();
         if (e.getDamager() instanceof Player) {

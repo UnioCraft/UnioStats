@@ -1,3 +1,11 @@
+stats:
+  killsAndDeaths: true
+  mobKills: true
+  bossKills: true
+  playTime: true
+  gapplesEaten: true
+  armorsBroke: true
+  armorsBroken: true
 database:
   ip: mysql.uniocraft.com
   port: 3306
@@ -5,4 +13,15 @@ database:
   user: factions
   pass: pass
   table: unio_stats
-prefix: '&6&lFACTIONS &b-> &2'
+prefix: '&6&lFACTIONS &b->&2'
+statsCommand: |
+  %prefix% %player% &cisimli oyuncunun istatistikleri:
+  %prefix% &cÖldürülen Oyuncu: &b%kills%
+  %prefix% &cÖlme: &b%deaths%
+  %prefix% &cÖldürme/Ölme oranı: &b%kdr%
+  %prefix% &cÖldürülen Yaratık: &b%mobKills%
+  %prefix% &cÖldürülen Boss: &b%bossKills%
+  %prefix% &cToplam Oynama Süresi: &b%playTime%
+  %prefix% &cYenilen Büyülü Altın Elma: &b%gapplesEaten%
+  %prefix% &cKırdığı Zırh Sayısı: &b%armorsBroke%
+  %prefix% &cKırılan Zırh Sayısı: &b%armorsBroken%
