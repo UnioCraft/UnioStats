@@ -94,7 +94,7 @@ public class StatListeners implements Listener {
         }
 
         if (killer != null) {
-            plugin.getStatManager().giveStat(killer.getName(), StatManager.Stats.MOB_KILLS, 1);
+            plugin.getStatManager().giveStat(killer.getName(), StatManager.Stats.MOBKILLS, 1);
         }
     }
 
@@ -106,7 +106,7 @@ public class StatListeners implements Listener {
         ItemStack item = event.getItem();
 
         if (item.getType().equals(Material.GOLDEN_APPLE) && item.getDurability() == 1) {
-            plugin.getStatManager().giveStat(player.getName(), StatManager.Stats.GAPPLES_EATEN, 1);
+            plugin.getStatManager().giveStat(player.getName(), StatManager.Stats.GAPPLESEATEN, 1);
         }
     }
 
@@ -115,7 +115,7 @@ public class StatListeners implements Listener {
         Player player = event.getPlayer();
 
         if (Utils.isArmor(event.getBrokenItem()) && plugin.getConfig().getBoolean("stats.armorsBroken")) {
-            plugin.getStatManager().giveStat(player.getName(), StatManager.Stats.ARMORS_BROKEN, 1);
+            plugin.getStatManager().giveStat(player.getName(), StatManager.Stats.ARMORSBROKEN, 1);
         }
 
         if (!(player.getLastDamageCause() instanceof EntityDamageByEntityEvent)) {
@@ -127,14 +127,14 @@ public class StatListeners implements Listener {
         EntityDamageByEntityEvent e = (EntityDamageByEntityEvent) player.getLastDamageCause();
         if (e.getDamager() instanceof Player) {
             Player damager = (Player) e.getDamager();
-            plugin.getStatManager().giveStat(damager.getName(), StatManager.Stats.ARMORS_BROKE, 1);
+            plugin.getStatManager().giveStat(damager.getName(), StatManager.Stats.ARMORSBROKE, 1);
         } else if (e.getDamager() instanceof Arrow) {
             Arrow killerArrow = (Arrow) e.getDamager();
 
             if (killerArrow.getShooter() instanceof Player) {
                 Player shooter = (Player) killerArrow.getShooter();
 
-                plugin.getStatManager().giveStat(shooter.getName(), StatManager.Stats.ARMORS_BROKE, 1);
+                plugin.getStatManager().giveStat(shooter.getName(), StatManager.Stats.ARMORSBROKE, 1);
             }
         }
     }
@@ -151,7 +151,7 @@ public class StatListeners implements Listener {
 
             if (killer != null) {
                 if (killer instanceof Player) {
-                    plugin.getStatManager().giveStat(killer.getName(), StatManager.Stats.BOSS_KILLS, 1);
+                    plugin.getStatManager().giveStat(killer.getName(), StatManager.Stats.BOSSKILLS, 1);
                 }
             }
         }

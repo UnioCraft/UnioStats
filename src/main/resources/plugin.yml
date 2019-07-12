@@ -3,7 +3,7 @@ main: me.uniodex.uniostats.UnioStats
 author: 'UnioDex'
 version: 1.0
 
-softdepend: [MythicMobs]
+softdepend: [MythicMobs, PlaceholderAPI]
 
 commands:
   uniostats:
