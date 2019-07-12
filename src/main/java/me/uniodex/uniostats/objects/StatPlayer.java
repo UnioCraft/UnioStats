@@ -101,9 +101,9 @@ public class StatPlayer {
             updatePlayTime();
 
             if (sync) {
-                plugin.getSqlManager().savePlayerStats(playerName, kills, deaths, mobKills, bossKills, playTime, gapplesEaten, armorsBroke, armorsBroken);
+                plugin.getSqlManager().savePlayerStats(playerName, kills, deaths, mobKills, bossKills, playTime, gapplesEaten, armorsBroke, armorsBroken, true);
             } else {
-                Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> plugin.getSqlManager().savePlayerStats(playerName, kills, deaths, mobKills, bossKills, playTime, gapplesEaten, armorsBroke, armorsBroken));
+                Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> plugin.getSqlManager().savePlayerStats(playerName, kills, deaths, mobKills, bossKills, playTime, gapplesEaten, armorsBroke, armorsBroken, false));
 
             }
         }

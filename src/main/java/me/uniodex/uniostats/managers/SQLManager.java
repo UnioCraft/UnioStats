@@ -113,18 +113,25 @@ public class SQLManager {
         return null;
     }
 
-    public void savePlayerStats(String player, int kills, int deaths, int mobKills, int bossKills, int playTime, int gapplesEaten, int armorsBroke, int armorsBroken) {
+    public void savePlayerStats(String player, int kills, int deaths, int mobKills, int bossKills, int playTime, int gapplesEaten, int armorsBroke, int armorsBroken, boolean sync) {
         if (!playerExists(player)) {
             updateSQL("INSERT INTO `" + database + "`.`" + table + "` (`player`, `kills`, `deaths`, `mobKills`, `bossKills`, `playTime`, `gapplesEaten`, `armorsBroke`, `armorsBroken`') " +
                     "VALUES ('" + player + "', '" + kills + "', '" + deaths + "', '" + mobKills + "', '" + bossKills + "', '" + playTime + "', '" + gapplesEaten + "', '" + armorsBroke + "', '" + armorsBroken + "');");
         } else {
             updateSQL("UPDATE `" + database + "`.`" + table + "` SET `kills` = '" + kills + "', `deaths` = '" + deaths + "', `mobKills` = '" + mobKills + "', `bossKills` = '" + bossKills + "', `playTime` = '" + playTime + "', `gapplesEaten` = '" + gapplesEaten + "', `armorsBroke` = '" + armorsBroke + "', `armorsBroken` = '" + armorsBroken + "' WHERE `" + table + "`.`player` = '" + player + "';");
         }
-        Bukkit.getScheduler().runTask(plugin, () -> {
+
+        if (!sync) {
+            Bukkit.getScheduler().runTask(plugin, () -> {
+                while (plugin.getStatManager().getDataSavingPlayers().contains(player)) {
+                    plugin.getStatManager().getDataSavingPlayers().remove(player);
+                }
+            });
+        } else {
             while (plugin.getStatManager().getDataSavingPlayers().contains(player)) {
                 plugin.getStatManager().getDataSavingPlayers().remove(player);
             }
-        });
+        }
     }
 
     public void onDisable() {
