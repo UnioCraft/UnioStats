@@ -3,6 +3,7 @@ package me.uniodex.uniostats.managers;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.uniodex.uniostats.UnioStats;
 import me.uniodex.uniostats.objects.StatPlayer;
+import me.uniodex.uniostats.utils.Utils;
 import org.bukkit.OfflinePlayer;
 
 /**
@@ -83,6 +84,10 @@ public class PlaceholderManager extends PlaceholderExpansion {
             if (identifier.equalsIgnoreCase(stat.toString().toLowerCase())) {
                 return UnioStats.getInstance().getStatManager().getStat(player.getName(), stat);
             }
+        }
+
+        if (identifier.equalsIgnoreCase("kdr")) {
+            return String.valueOf(Utils.calculateKDR(statPlayer.getKills(), statPlayer.getDeaths()));
         }
 
         return null;
