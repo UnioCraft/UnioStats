@@ -69,18 +69,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <version>2.4.7</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.6.4</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.6</version>
@@ -89,9 +77,9 @@
         <dependency>
             <groupId>MythicMobs</groupId>
             <artifactId>MythicMobs</artifactId>
-            <version>4.5.7</version>
+            <version>LATEST</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/libs/MythicMobs-4.5.7.jar</systemPath>
+            <systemPath>${library112}/MythicMobs-4.6.5.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>me.clip</groupId>
@@ -99,12 +87,21 @@
             <version>2.10.3</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>UnioEssentials</groupId>
+            <artifactId>UnioEssentials</artifactId>
+            <version>LATEST</version>
+            <scope>system</scope>
+            <systemPath>${library112}/UnioEssentials.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <library>C:\Users\Work\Documents\lib</library>
+        <library112>C:\Users\Work\Documents\lib\1.12</library112>
     </properties>
 
     <packaging>jar</packaging>
